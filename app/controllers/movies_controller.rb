@@ -4,8 +4,12 @@ class MoviesController < ApplicationController
   end
 
   def create
-    Movie.create movie_params
-    render text: movie_params.inspect
+    movie = Movie.create movie_params
+    redirect_to movie_path movie.id
+  end
+
+  def show
+
   end
 
   private
