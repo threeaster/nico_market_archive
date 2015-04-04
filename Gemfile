@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.5'
+gem 'rails', '~> 4.2.0'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -33,7 +33,7 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.0'
   gem 'guard-rspec'
   gem 'capybara'
   gem 'spring-commands-rspec'
@@ -60,12 +60,12 @@ group :test do
   gem 'ci_reporter_rspec'
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'webmock'
 end
 
 gem 'rake'
 gem 'execjs'
 gem 'therubyracer'
-gem 'authlogic'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
