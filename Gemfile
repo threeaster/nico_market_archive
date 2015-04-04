@@ -66,6 +66,8 @@ end
 gem 'rake'
 gem 'execjs'
 gem 'therubyracer'
+gem 'nokogiri'
+gem 'tapp'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
