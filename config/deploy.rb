@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.3.5'
+lock '3.4.0'
 
 set :application, 'nico_market_archive'
 set :repo_url, '/var/lib/git/nico_market_archive.git'
