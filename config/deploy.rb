@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'nico_market_archive'
-set :repo_url, '/var/lib/git/nico_market_archive.git'
+set :repo_url, 'git@github.com:threeaster/nico_market_archive.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
