@@ -10,9 +10,9 @@ class MoviesController < ApplicationController
 
   def show
     movie = Movie.find params[:id]
-    market_info = ApiAdapter.get_market_info movie.movie_id
+    @market_info = ApiAdapter.get_market_info movie.movie_id
     history = History.create movie: movie, date: Time.now
-    market_info.each do |product_info|
+    @market_info.each do |product_info|
       product = Product.create shop_id: product_info[:shop_id], product_id: product_info[:product_id]
       product.histories << history
     end
