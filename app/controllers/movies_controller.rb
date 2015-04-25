@@ -13,7 +13,12 @@ class MoviesController < ApplicationController
     @market_info = ApiAdapter.get_market_info movie.movie_id
     history = History.create movie: movie, date: Time.now
     @market_info.each do |product_info|
-      product = Product.create shop_id: product_info[:shop_id], product_id: product_info[:product_id]
+      products = Product.where(product_id: product_info[:product_id])
+      if products.count > 0
+        product = products[0]
+      else
+        product = Product.create shop_id: product_info[:shop_id], product_id: product_info[:product_id]
+      end
       product.histories << history
     end
   end

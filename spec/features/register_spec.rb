@@ -4,7 +4,9 @@ feature '登録' do
   subject{ page }
   background do
     stub_request(:get, "http://ichiba.nicovideo.jp/embed/zero/show_ichiba?v=sm9").to_return(:status => 200, :body => page_file('sm9_market.json'))
+    stub_request(:get, "http://ichiba.nicovideo.jp/embed/zero/show_ichiba?v=sm09").to_return(:status => 200, :body => page_file('sm09_market.json')) #テスト用で、実際には存在しないID
   end
+
   feature 'トップからフォームで正しい未登録の動画IDが投げられ、そのshowページにアクセスする' do
     let(:movie_id){ 'sm9' }
     background do
@@ -36,5 +38,22 @@ feature '登録' do
     end
 
     scenario { should have_content 'az4056000816' }
+  end
+
+  feature '登録済みの商品があるときは商品を作らず、historyだけが増える' do
+    let(:before_movie){ create :movie, movie_id: 'sm09' }
+    let(:movie){ create :movie, movie_id: 'sm9' }
+    background do
+      visit movie_path before_movie.id
+      visit movie_path movie.id
+    end
+
+    scenario { expect(Product.count).to eq 7 }
+
+    scenario '各回の商品数が正しい' do
+      histories = History.all
+      expect(histories[0].products.count).to eq 6
+      expect(histories[1].products.count).to eq 7
+    end
   end
 end
