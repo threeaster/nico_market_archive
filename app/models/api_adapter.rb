@@ -8,7 +8,7 @@ class ApiAdapter
     items.select{ |item|
       item.attribute('id').to_s.start_with? 'ichibaitem_watch'
     }.map do |item|
-      { shop_id: 1, product_id: item.attribute('id').to_s.sub('ichibaitem_watch_', '') }
+      { shop_id: 1, product_id: item.attribute('id').to_s.sub('ichibaitem_watch_az', '') }
     end
   end
 end
