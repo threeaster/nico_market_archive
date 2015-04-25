@@ -26,7 +26,7 @@ feature '登録' do
 
     scenario { expect(movie.products.count).to eq 7 }
 
-    scenario { expect(movie.products.first.product_id).to eq '4056000816' }
+    scenario { expect(movie.products.first.product_id).to eq 'az4056000816' }
   end
 
   feature '作成済みの動画のshowページに来ると、その動画の市場情報が見れる' do
@@ -35,6 +35,6 @@ feature '登録' do
       visit movie_path movie.id
     end
 
-    scenario { should have_content '4056000816' }
+    scenario { should have_content 'az4056000816' }
   end
 end
