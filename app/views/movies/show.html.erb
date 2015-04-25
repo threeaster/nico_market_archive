@@ -1,3 +1,9 @@
+<h2>商品</h2>
 <% @market_info.each do |product| %>
   <p><%= product[:product_id] %></p>
+<% end %>
+
+<h2>履歴</h2>
+<% @histories.each do |history| %>
+  <p><%= link_to history.date, history_path(history.id) %></p>
 <% end %>
