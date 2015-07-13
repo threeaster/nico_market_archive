@@ -10,7 +10,7 @@ describe ApiAdapter do
         '新豪血寺一族 闘婚 NG 【NEOGEO】',
         'レッツゴー！陰陽師',
         '陰陽師　安倍　晴明風　  男性M    コスプレ衣装　 　完全オーダメイドも対応',
-        '陰陽師  彰子風　  女性M    コスプレ衣装　 　完全オーダメイドも対応'
+        '陰陽師  彰子風　  女性M    コスプレ衣装　 　完全オーダメイドも対応asterInPla'
       ]
       product_image_urls = %w[
         http://ecx.images-amazon.com/images/I/51H24893PSL._AA178_.jpg

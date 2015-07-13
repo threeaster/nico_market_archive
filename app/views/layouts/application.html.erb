@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NicoMarketArchive</title>
+  <title><%= @title %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="main">
+  <header>
+    <h1 class="logo">ニコニコ市場アーカイブ</h1>
+    <form action="#" class="header-form">
+      <label for="movie_code">
+      ニコニコ動画ID<br />
+      例：sm9
+      </label>
+      <input type="text" placeholder="動画ID" id="movie_code" />
+      <input type="submit" value="保管＆検索" />
+    </form>
+  </header>
+  <hr />
+  <div id="content">
+    <%= yield %>
+  </div>
 
-<%= yield %>
+  <hr />
 
+  <footer>
+    <nav>
+      <ul>
+        <li><a href="#">トップページ</a></li>
+        <li><a href="#">コンタクト</a></li>
+        <li><a href="http://www.nicovideo.jp/">ニコニコ動画</a></li>
+        <li><a href="http://ichiba.nicovideo.jp/">ニコニコ市場</a></li>
+      </ul>
+    </nav>
+  </footer>
+  </div>
 </body>
 </html>

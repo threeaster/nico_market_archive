@@ -1,0 +1,242 @@
+// Place all the styles related to the movies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+  position: relative;
+  margin: 0 auto;
+
+  & > div.main{
+    margin: 0 auto;
+    width: 800px;
+  }
+}
+
+header{
+  margin: 0 auto;
+  position: relative;
+  height: 100px;
+
+  .logo{
+    float: left;
+  }
+  .header-form{
+    float: right;
+    margin-top: 10px;
+  }
+}
+
+#movie_container #nico_movie{
+  float: right;
+  margin-top: 5px;
+}
+
+#info{
+  width: 800px;
+  height: 350px;
+
+  #calendar{
+    float: left;
+  }
+
+  #date_list{
+    float: left;
+    list-style-type: none;
+    height: 212px;
+    padding: 0px;
+    margin: 0px;
+    border-color: #398ce4;
+    border-width: 5px 2px 2px 2px;
+    border-style: solid;
+    border-radius: 6px 6px 0 0;
+
+    .dates{
+      float: left;
+      margin-right: 5px;
+    }
+
+    li a{
+      text-decoration: none;
+      color: #398ce4;
+    }
+
+    &.selected{
+      color: #e49139
+    }
+  }
+
+  #link_to_all_products{
+    float: right;
+    margin-top: 115px;
+  }
+}
+
+#products{
+  margin-top: 30px;
+}
+
+.product{
+  width: 150px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  img{
+    width: 150px;
+    height: 150px;
+  }
+
+  p{
+    margin: 0px;
+  }
+}
+
+.clearfix{
+  clear: both;
+  margin-bottom: 50px;
+}
+
+div.jqueryCalendar{
+  width   : 197px;
+
+  a{
+    outline   : 0;
+    text-decoration : none;
+  }
+
+  ul.navi{
+    position  : relative;
+    width   : 187px;
+    height    : 28px;
+    margin    : 0;
+    padding   : 7px 5px 0;
+    background  : url('<%= asset_path "sprites.png" %>') -75px 0 no-repeat;
+
+    li{
+      display   : inline;
+      margin    : 0;
+      padding   : 0;
+      list-style  : none;
+
+      a{
+        display   : block;
+        width   : 22px;
+        height    : 13px;
+        background  : #FFF;
+        text-indent : -9999px;
+        overflow  : hidden;
+      }
+
+      &.prev a{
+        float   : left;
+        background  : url('<%= asset_path "sprites.png" %>') 0 -25px no-repeat;
+
+        &:hover {
+          background-position : 0 -38px;
+        }
+      }
+
+      &.next a {
+        float   : right;
+        background  : url('<%= asset_path "sprites.png" %>') -25px -25px no-repeat;
+
+        &:hover {
+          background-position : -25px -38px;
+        }
+      }
+    }
+  }
+  div.main {
+    padding   : 0 0 5px;
+    background  : url('<%= asset_path "sprites.png" %>') -272px 100% no-repeat;
+
+    table {
+      position  : relative;
+      margin    : 0 auto;
+      border-collapse : collapse;
+      border-spacing  : 0;
+
+      th,td{
+        width   : 25px;
+        height    : 25px;
+        padding   : 0;
+        border    : 0;
+        border-left : 2px solid #FCFCFC;
+        border-bottom : 2px solid #FCFCFC;
+        color   : #666;
+        line-height : 25px;
+        text-align  : center;
+        vertical-align  : middle;
+      }
+
+      th {
+        height    : 20px;
+        line-height : 20px;
+        font-size : 12px;
+      }
+
+      td {
+        background  : url('<%= asset_path "sprites.png" %>') 0 0 no-repeat;
+        font-size : 13px;
+
+        &.event{
+          a, span{
+            display   : block;
+            width   : 25px;
+            height    : 25px;
+            background  : url('<%= asset_path "sprites.png" %>') -50px 0 no-repeat;
+            color   : #FFF;
+          }
+
+          a:hover{
+            background-position : -50px 
+          }
+        }
+      }
+
+      .sun {
+        color   : #C14F22;
+      }
+
+      .sat {
+        color   : #33F;
+      }
+
+      .otherMonth {
+        color   : #CFCFCF;
+      }
+    }
+  }
+
+  div.caption {
+    position  : relative;
+    width   : 101px;
+    height    : 18px;
+    margin    : -30px auto 3px;
+    padding   : 2px;
+    font-size : 13px;
+    line-height : 18px;
+    text-align  : center;
+    vertical-align  : middle;
+  }
+
+  div.todayLink {
+    padding   : 3px 0;
+    font-size : 13px;
+    text-align  : center;
+  }
+}
+
+
+footer{
+  margin: 0 auto;
+
+  ul{
+    float: right;
+  }
+
+  li{
+    list-style-type: none;
+    float: left;
+    margin-left: 10px;
+  }
+}

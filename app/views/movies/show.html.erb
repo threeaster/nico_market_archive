@@ -1,9 +1,77 @@
-<h2>商品</h2>
-<% @market_info.each do |product| %>
-  <p><%= product[:product_id] %></p>
-<% end %>
+<% @title = 'sm9の2015年6月17日12:00の市場情報｜ニコニコ市場アーカイブ' %>
+<div id="movie_container">
+  <iframe width="312" height="176" src="http://ext.nicovideo.jp/thumb/sm9" scrolling="no" frameborder="0" id="nico_movie" class="nicovideo"></iframe>
+</div>
+<div id="info">
+  <h2>
+    <p id="date_example">2015年6月18日　11:00の市場</p>
+  </h2>
+  <p>下から、市場情報を見たい時間を選択したください</p>
+  <div id="calendar"></div>
+  <ul id="date_list">
+    <div class="dates">
+      <li><a href="#">02:12</a></li>
+      <li><a href="#">05:55</a></li>
+      <li><a href="#">08:30</a></li>
+      <li><a href="#" class="selected">11:00</a></li>
+      <li><a href="#">15:30</a></li>
+      <li><a href="#">17:02</a></li>
+      <li><a href="#">18:55</a></li>
+      <li><a href="#">21:21</a></li>
+    </div>
+    <div class="dates">
+      <li><a href="#">22:59</a></li>
+      <li><a href="#">23:59</a></li>
+    </div>
 
-<h2>履歴</h2>
-<% @histories.each do |history| %>
-  <p><%= link_to history.date, history_path(history.id) %></p>
-<% end %>
+
+  </ul>
+  <p id="link_to_all_products"><a href="#">→この動画に登録されたすべての商品を表示する</a></p>
+</div>
+<div id="main">
+  <div id="products">
+    <div class="product">
+      <img width="178" height="178" alt="テトリス パーティープレミアム" title="テトリス パーティープレミアム" src="http://ecx.images-amazon.com/images/I/51XoArwn7BL._AA178_.jpg" /><br />
+      <a href="http://www.amazon.co.jp/dp/B003LO2FPU" class="product_name">テトリス パーティープレミアム</a>
+      <p class="maker">ハドソン</p>
+      <span class="buy">5</span>人が購入 / <span class="click">118</span>人がクリック(この動画で<span class="buy_at_this_movie">2</span>人)<br />
+      <a href="http://ichiba.nicovideo.jp/item/azB003LO2FPK" class="nico_market_link">ニコニコ市場へ</a>
+    </div>
+    <div class="product">
+      <img width="178" height="178" alt="テトリス パーティープレミアム" title="テトリス パーティープレミアム" src="http://ecx.images-amazon.com/images/I/51XoArwn7BL._AA178_.jpg" /><br />
+      <a href="http://www.amazon.co.jp/dp/B003LO2FPU" class="product_name">テトリス パーティープレミアム</a>
+      <p class="maker">ハドソン</p>
+      <span class="buy">5</span>人が購入 / <span class="click">118</span>人がクリック(この動画で<span class="buy_at_this_movie">2</span>人)<br />
+      <a href="http://ichiba.nicovideo.jp/item/azB003LO2FPK" class="nico_market_link">ニコニコ市場へ</a>
+    </div>
+    <div class="product">
+      <img width="178" height="178" alt="テトリス パーティープレミアム" title="テトリス パーティープレミアム" src="http://ecx.images-amazon.com/images/I/51XoArwn7BL._AA178_.jpg" /><br />
+      <a href="http://www.amazon.co.jp/dp/B003LO2FPU" class="product_name">テトリス パーティープレミアム</a>
+      <p class="maker">ハドソン</p>
+      <span class="buy">5</span>人が購入 / <span class="click">118</span>人がクリック(この動画で<span class="buy_at_this_movie">2</span>人)<br />
+      <a href="http://ichiba.nicovideo.jp/item/azB003LO2FPK" class="nico_market_link">ニコニコ市場へ</a>
+    </div>
+    <div class="product">
+      <img width="178" height="178" alt="テトリス パーティープレミアム" title="テトリス パーティープレミアム" src="http://ecx.images-amazon.com/images/I/51XoArwn7BL._AA178_.jpg" /><br />
+      <a href="http://www.amazon.co.jp/dp/B003LO2FPU" class="product_name">テトリス パーティープレミアム</a>
+      <p class="maker">ハドソン</p>
+      <span class="buy">5</span>人が購入 / <span class="click">118</span>人がクリック(この動画で<span class="buy_at_this_movie">2</span>人)<br />
+      <a href="http://ichiba.nicovideo.jp/item/azB003LO2FPK" class="nico_market_link">ニコニコ市場へ</a>
+    </div>
+    <div class="product">
+      <img width="178" height="178" alt="テトリス パーティープレミアム" title="テトリス パーティープレミアム" src="http://ecx.images-amazon.com/images/I/51XoArwn7BL._AA178_.jpg" /><br />
+      <a href="http://www.amazon.co.jp/dp/B003LO2FPU" class="product_name">テトリス パーティープレミアム</a>
+      <p class="maker">ハドソン</p>
+      <span class="buy">5</span>人が購入 / <span class="click">118</span>人がクリック(この動画で<span class="buy_at_this_movie">2</span>人)<br />
+      <a href="http://ichiba.nicovideo.jp/item/azB003LO2FPK" class="nico_market_link">ニコニコ市場へ</a>
+    </div>
+    <div class="product">
+      <img width="178" height="178" alt="テトリス パーティープレミアム" title="テトリス パーティープレミアム" src="http://ecx.images-amazon.com/images/I/51XoArwn7BL._AA178_.jpg" /><br />
+      <a href="http://www.amazon.co.jp/dp/B003LO2FPU" class="product_name">テトリス パーティープレミアム</a>
+      <p class="maker">ハドソン</p>
+      <span class="buy">5</span>人が購入 / <span class="click">118</span>人がクリック(この動画で<span class="buy_at_this_movie">2</span>人)<br />
+      <a href="http://ichiba.nicovideo.jp/item/azB003LO2FPK" class="nico_market_link">ニコニコ市場へ</a>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
