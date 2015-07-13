@@ -10,14 +10,14 @@
 <div class="main">
   <header>
     <h1 class="logo">ニコニコ市場アーカイブ</h1>
-    <form action="#" class="header-form">
+    <%= form_for @movie, html: { class: 'header-form' } do |f| %>
       <label for="movie_code">
       ニコニコ動画ID<br />
       例：sm9
       </label>
-      <input type="text" placeholder="動画ID" id="movie_code" />
-      <input type="submit" value="保管＆検索" />
-    </form>
+      <%= f.text_field :movie_id, placeholder: '動画ID' %>
+      <%= f.submit '保管＆検索' %>
+    <% end %>
   </header>
   <hr />
   <div id="content">
