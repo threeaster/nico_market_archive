@@ -37,7 +37,11 @@ feature '登録' do
       visit movie_path movie.id
     end
 
-    scenario { should have_content 'az4056000816' }
+    scenario { should have_content product_names[0] }
+    scenario { should have_content makers[0] }
+    scenario { should have_content buy_nums[0] }
+    scenario { should have_content clicked_nums[0] }
+    scenario { should have_content clicked_at_this_movies[0] }
   end
 
   feature '登録済みの商品があるときは商品を作らず、historyだけが増える' do

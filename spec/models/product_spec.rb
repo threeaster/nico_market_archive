@@ -10,4 +10,11 @@ RSpec.describe Product, :type => :model do
       it { expect(products.first.product_id).to eq product.product_id }
     end
   end
+
+  describe 'product_id_for_url' do
+    it 'amazon' do
+      product = create :product, shop_id: Product.shop_ids[:amazon]
+      expect(product.product_id_for_url).to eq product.product_id.sub('az', '')
+    end
+  end
 end
