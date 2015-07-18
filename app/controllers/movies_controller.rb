@@ -3,7 +3,9 @@ class MoviesController < ApplicationController
   end
 
   def create
-    movie = Movie.create movie_params
+    unless movie = Movie.where(movie_id: movie_params[:movie_id]).first
+      movie = Movie.create movie_params
+    end
     redirect_to movie_path movie.id
   end
 

@@ -12,12 +12,25 @@ feature '登録' do
     background do
       visit root_path
       fill_in 'movie_movie_id', with: movie_id
-      click_button '保管'
+      click_button '保管＆検索'
     end
 
     scenario { expect(Movie.first.movie_id).to eq movie_id }
     
     scenario { expect(current_path).to eq movie_path Movie.first.id }
+  end
+
+  feature '作成済みの動画idを再度投げられた時は新たに作成せず、あるものをもってくる' do
+    background do
+      visit root_path
+      fill_in 'movie_movie_id', with: 'sm9'
+      click_button '保管＆検索'
+      visit root_path
+      fill_in 'movie_movie_id', with: 'sm9'
+      click_button '保管＆検索'
+    end
+
+    scenario { expect(Movie.count).to eq 1 }
   end
 
   feature '作成済みの動画のshowページに来ると、その動画の市場情報が登録される' do
