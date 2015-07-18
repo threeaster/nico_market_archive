@@ -9,6 +9,7 @@ class MoviesController < ApplicationController
 
   def show
     movie = Movie.find params[:id]
+    @movie_id = movie.movie_id
     @market_info = ApiAdapter.get_market_info movie.movie_id
     history = History.create movie: movie, date: Time.now
     history.register_products(@market_info)
