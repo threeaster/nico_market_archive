@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629131426) do
+ActiveRecord::Schema.define(version: 20150718093145) do
 
   create_table "histories", force: :cascade do |t|
     t.integer  "movie_id",   limit: 4
@@ -35,12 +35,16 @@ ActiveRecord::Schema.define(version: 20150629131426) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer  "shop_id",           limit: 4
-    t.string   "product_id",        limit: 255
+    t.integer  "shop_id",               limit: 4
+    t.string   "product_id",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "product_name",      limit: 255
-    t.string   "product_image_url", limit: 255
+    t.string   "product_name",          limit: 255
+    t.string   "product_image_url",     limit: 255
+    t.string   "maker",                 limit: 255
+    t.integer  "buy_num",               limit: 4
+    t.integer  "clicked_num",           limit: 4
+    t.integer  "clicked_at_this_movie", limit: 4
   end
 
   add_index "products", ["product_id"], name: "index_products_on_product_id", unique: true, using: :btree

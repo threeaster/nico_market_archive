@@ -8,7 +8,7 @@ class History < ActiveRecord::Base
       if products.count > 0
         product = products[0]
       else
-        product = Product.create shop_id: product_info[:shop_id], product_id: product_info[:product_id]
+        product = Product.create product_info
       end
       product.histories << self
     end
