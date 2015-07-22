@@ -1,6 +1,7 @@
 class History < ActiveRecord::Base
   has_and_belongs_to_many :products
   belongs_to :movie
+  TIMESPAN = 10.minutes
 
   def register_products(products_info)
     products_info.each do |product_info|
@@ -12,5 +13,9 @@ class History < ActiveRecord::Base
       end
       product.histories << self
     end
+  end
+
+  def recently_registerd?
+    Time.now - created_at < TIMESPAN
   end
 end

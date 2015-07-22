@@ -73,4 +73,37 @@ feature '登録' do
       expect(histories[1].products.count).to eq 7
     end
   end
+
+  feature '直近の登録時間によって登録されるかが決まる' do
+    let(:movie){ create :movie, movie_id: 'sm9' }
+    background do
+      Timecop.freeze
+    end
+
+    feature '直近が10分前だった時' do
+      background do
+        Timecop.travel 10.minutes.ago
+        visit movie_path movie.id
+        Timecop.return
+      end
+
+      scenario '改めて登録される' do
+        visit movie_path movie.id
+        expect(History.count).to eq 2
+      end
+    end
+
+    feature '直近が9分59病だった時' do
+      background do
+        Timecop.travel (10.minutes.ago + 1)
+        visit movie_path movie.id
+        Timecop.return
+      end
+
+      scenario '登録されない' do
+        visit movie_path movie.id
+        expect(History.count).to eq 1
+      end
+    end
+  end
 end
