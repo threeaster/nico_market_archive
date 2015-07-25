@@ -1,3 +1,44 @@
-<% @products.each do |product| %>
-  <p><%= product.product_id %></p>
-<% end %>
+<% @title = 'sm9の2015年6月17日12:00の市場情報｜ニコニコ市場アーカイブ' %>
+<div id="movie_container">
+  <iframe width="312" height="176" src="http://ext.nicovideo.jp/thumb/<%= @movie_id %>" scrolling="no" frameborder="0" id="nico_movie" class="nicovideo"></iframe>
+</div>
+<div id="info">
+  <h2>
+    <p id="date_example">2015年6月18日　11:00の市場</p>
+  </h2>
+  <p>下から、市場情報を見たい時間を選択したください</p>
+  <div id="calendar"></div>
+  <ul id="date_list">
+    <div class="dates">
+      <li><a href="#">02:12</a></li>
+      <li><a href="#">05:55</a></li>
+      <li><a href="#">08:30</a></li>
+      <li><a href="#" class="selected">11:00</a></li>
+      <li><a href="#">15:30</a></li>
+      <li><a href="#">17:02</a></li>
+      <li><a href="#">18:55</a></li>
+      <li><a href="#">21:21</a></li>
+    </div>
+    <div class="dates">
+      <li><a href="#">22:59</a></li>
+      <li><a href="#">23:59</a></li>
+    </div>
+
+
+  </ul>
+  <p id="link_to_all_products"><a href="#">→この動画に登録されたすべての商品を表示する</a></p>
+</div>
+<div id="main">
+  <div id="products">
+    <% @products.each do |product| %>
+      <div class="product">
+        <%= image_tag product.product_image_url, width: 178, height: 178, alt: product.product_name, title: product.product_name %><br />
+        <%= link_to product.product_name, "http://www.amazon.co.jp/dp/#{product.product_id_for_url}", class: 'product_name' %>
+        <p class="maker"><%= product.maker %></p>
+        <span class="buy"><%= product.buy_num %></span>人が購入 / <span class="click"><%= product.clicked_num %></span>人がクリック(この動画で<span class="buy_at_this_movie"><%= product.clicked_at_this_movie %></span>人)<br />
+        <%= link_to 'ニコニコ市場へ', "http://ichiba.nicovideo.jp/item/#{product.product_id}", class: 'nico_market_link' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="clearfix"></div>
+</div>

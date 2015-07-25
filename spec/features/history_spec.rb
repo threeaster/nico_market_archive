@@ -18,12 +18,10 @@ feature 'history' do
   end
 
   feature '個別のhistoryページで、その時の商品の情報が見れる' do
-    it 'product_id' do
-      visit history_path movie.histories[0].id
-      ["az4056000816", "azB000P5FHCQ", "azB000CQCOLA", "azB00014B10S", "azB0044BIQDO", "azB009K2N4FW"].each do |product_id|
-        should have_content product_id
-      end
-      should_not have_content "azB009K2QJ0E"
-    end
+    scenario { should have_content product_names[0] }
+    scenario { should have_content makers[0] }
+    scenario { should have_content buy_nums[0] }
+    scenario { should have_content clicked_nums[0] }
+    scenario { should have_content clicked_at_this_movies[0] }
   end
 end

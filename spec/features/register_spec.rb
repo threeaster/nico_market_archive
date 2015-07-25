@@ -93,9 +93,9 @@ feature '登録' do
       end
     end
 
-    feature '直近が9分59病だった時' do
+    feature '直近が9分30秒だった時' do
       background do
-        Timecop.travel (10.minutes.ago + 1)
+        Timecop.travel (10.minutes.ago + 30)
         visit movie_path movie.id
         Timecop.return
       end

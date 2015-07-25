@@ -1,5 +1,7 @@
 class HistoriesController < ApplicationController
   def show
-    @products = History.find(params[:id]).products
+    history = History.find(params[:id])
+    @movie_id = Movie.find(history.movie_id).movie_id
+    @products = history.products
   end
 end
