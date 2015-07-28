@@ -18,6 +18,7 @@ feature 'history' do
   end
 
   feature '個別のhistoryページで、その時の商品の情報が見れる' do
+    scenario { should have_title movie.movie_id }
     scenario { should have_content product_names[0] }
     scenario { should have_content makers[0] }
     scenario { should have_content buy_nums[0] }

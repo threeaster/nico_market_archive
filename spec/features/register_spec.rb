@@ -50,6 +50,7 @@ feature '登録' do
       visit movie_path movie.id
     end
 
+    scenario { should have_title movie.movie_id }
     scenario { should have_content product_names[0] }
     scenario { should have_content makers[0] }
     scenario { should have_content buy_nums[0] }
