@@ -50,4 +50,13 @@ module MovieData
   def market_info
     [shop_ids, product_ids, product_names, product_image_urls, makers, buy_nums, clicked_nums, clicked_at_this_movies].transpose.map{ |info| {shop_id: info[0], product_id: info[1], product_name: info[2], product_image_url: info[3], maker: info[4], buy_num: info[5], clicked_num: info[6], clicked_at_this_movie: info[7]} }
   end
+
+  def register_products(history = nil)
+    (0..6).each do |i|
+      product = Product.create shop_id: shop_ids[i], product_id: product_ids[i], product_name: product_names[i], product_image_url: product_image_urls[i], maker: makers[i], buy_num: buy_nums[i], clicked_num: clicked_nums[i], clicked_at_this_movie: clicked_at_this_movies[i]
+      if history
+        history.products << product
+      end
+    end
+  end
 end
