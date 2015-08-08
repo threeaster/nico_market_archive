@@ -19,20 +19,6 @@ class MoviesController < ApplicationController
       last_history.register_products(market_info)
     end
     @products = last_history.products
-    now = last_history.date
-    gon.calender = {}
-    gon.calender[:year] = now.strftime('%Y').to_i
-    gon.calender[:month] = now.strftime('%m').to_i
-    gon.calender[:events] = History.where('date >= ?', now.beginning_of_month).inject({}) do |hash, history|
-      date_str = history.date.strftime '%Y-%m-%d'
-      history_data = { time: history.date.strftime('%H:%M'), id: history.id }
-      if hash[date_str]
-        hash[date_str] << history_data
-      else
-        hash[date_str] = [history_data]
-      end
-      hash
-    end
     render template: 'histories/show'
   end
 
