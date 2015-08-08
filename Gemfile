@@ -63,6 +63,7 @@ group :test do
   gem 'launchy'
   gem 'webmock'
   gem 'timecop'
+  gem 'poltergeist'
 end
 
 gem 'rake'
@@ -70,6 +71,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'nokogiri'
 gem 'tapp'
+gem 'gon'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -11,6 +11,8 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'factory_girl'
 require 'webmock/rspec'
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 
 # Add additional requires below this line. Rails is not loaded until this point!
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -59,6 +61,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include MovieData
   FactoryGirl.reload
+  WebMock.disable_net_connect!(:allow_localhost => true)
 end
 
 def page_file path

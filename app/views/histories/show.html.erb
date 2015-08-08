@@ -1,31 +1,12 @@
 <% @title = "#{@movie_id}の2015年6月17日12:00の市場情報｜ニコニコ市場アーカイブ" %>
-<div id="movie_container">
-  <iframe width="312" height="176" src="http://ext.nicovideo.jp/thumb/<%= @movie_id %>" scrolling="no" frameborder="0" id="nico_movie" class="nicovideo"></iframe>
-</div>
 <div id="info">
+  <div id="movie_container">
+    <iframe width="312" height="176" src="http://ext.nicovideo.jp/thumb/<%= @movie_id %>" scrolling="no" frameborder="0" id="nico_movie" class="nicovideo"></iframe>
+  </div>
   <h2>
     <p id="date_example">2015年6月18日　11:00の市場</p>
   </h2>
   <p>下から、市場情報を見たい時間を選択したください</p>
-  <div id="calendar"></div>
-  <ul id="date_list">
-    <div class="dates">
-      <li><a href="#">02:12</a></li>
-      <li><a href="#">05:55</a></li>
-      <li><a href="#">08:30</a></li>
-      <li><a href="#" class="selected">11:00</a></li>
-      <li><a href="#">15:30</a></li>
-      <li><a href="#">17:02</a></li>
-      <li><a href="#">18:55</a></li>
-      <li><a href="#">21:21</a></li>
-    </div>
-    <div class="dates">
-      <li><a href="#">22:59</a></li>
-      <li><a href="#">23:59</a></li>
-    </div>
-
-
-  </ul>
   <p id="link_to_all_products"><a href="#">→この動画に登録されたすべての商品を表示する</a></p>
 </div>
 <div id="main">

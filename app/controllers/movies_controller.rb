@@ -13,12 +13,26 @@ class MoviesController < ApplicationController
     movie = Movie.find params[:id]
     @movie_id = movie.movie_id
     market_info = ApiAdapter.get_market_info movie.movie_id
-    last_history = movie.histories.last
+    last_history = movie.histories.order(id: :desc).first
     unless last_history && last_history.recently_registerd?
-      history = History.create movie: movie, date: Time.now
-      history.register_products(market_info)
+      last_history = History.create movie: movie, date: Time.now
+      last_history.register_products(market_info)
     end
-    @products = movie.histories.last.products
+    @products = last_history.products
+    now = last_history.date
+    gon.calender = {}
+    gon.calender[:year] = now.strftime('%Y').to_i
+    gon.calender[:month] = now.strftime('%m').to_i
+    gon.calender[:events] = History.where('date >= ?', now.beginning_of_month).inject({}) do |hash, history|
+      date_str = history.date.strftime '%Y-%m-%d'
+      history_data = { time: history.date.strftime('%H:%M'), id: history.id }
+      if hash[date_str]
+        hash[date_str] << history_data
+      else
+        hash[date_str] = [history_data]
+      end
+      hash
+    end
     render template: 'histories/show'
   end
 
