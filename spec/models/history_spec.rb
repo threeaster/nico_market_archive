@@ -29,4 +29,19 @@ RSpec.describe History, :type => :model do
       expect(history2.products.map{ |p| p[:product_id] }).to match_array market_info[0..-2].map{ |p| p[:product_id] }
     end
   end
+
+  describe '時間関係のgetter' do
+    let(:movie){ create :movie, movie_id: 'sm9' }
+    let(:year){ '2015' }
+    let(:month){ '1' }
+    let(:day){ '2' }
+    let(:hour){ '3' }
+    let(:minute){ '4' }
+    let(:history){ History.create movie: movie, date: Time.new(year, month, day, hour, minute, 0) }
+    it{ expect(history.year).to eq year }
+    it{ expect(history.month).to eq month }
+    it{ expect(history.day).to eq day }
+    it{ expect(history.hour).to eq hour }
+    it{ expect(history.minute).to eq minute }
+  end
 end

@@ -18,4 +18,24 @@ class History < ActiveRecord::Base
   def recently_registerd?
     Time.now - created_at < TIMESPAN
   end
+
+  def year
+    date.strftime '%Y'
+  end
+
+  def month
+    date.strftime '%-m'
+  end
+
+  def day
+    date.strftime '%-d'
+  end
+
+  def hour
+    date.strftime '%-H'
+  end
+
+  def minute
+    date.strftime '%-M'
+  end
 end
