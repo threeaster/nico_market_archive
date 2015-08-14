@@ -44,4 +44,25 @@ RSpec.describe History, :type => :model do
     it{ expect(history.hour).to eq hour }
     it{ expect(history.minute).to eq minute }
   end
+
+  describe '指定された時間を含む期間を取得' do
+    let(:params){ { year: 2015, month: 2, day: 27, hour: 19, minute: 30 } }
+    before do
+      movie = create :movie, movie_id: 'sm9'
+      [
+        [2014, 12, 31, 23, 55, 0],
+        [2015, 1, 30, 22, 50, 0],
+        [2015, 2, 28, 21, 45, 0],
+        [2015, 2, 27, 20, 40, 0],
+        [2015, 2, 27, 19, 35, 0],
+        [2015, 2, 27, 19, 30, 0]
+      ].each{ |time| History.create movie: movie, date: Time.new(*time) }
+    end
+
+    it{ expect(History.years params).to eq %w[2014 2015] }
+    it{ expect(History.months params).to eq %w[1 2] }
+    it{ expect(History.days params).to eq %w[27 28] }
+    it{ expect(History.hours params).to eq %w[19 20] }
+    it{ expect(History.minutes params).to eq %w[30 35] }
+  end
 end

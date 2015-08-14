@@ -38,4 +38,28 @@ class History < ActiveRecord::Base
   def minute
     date.strftime '%-M'
   end
+
+  def self.years(params = {})
+    History.all.order(:date).map{ |h| h.date.strftime '%Y' }.uniq
+  end
+
+  def self.months(params)
+    origin = Time.new(params[:year], 1, 1, 0, 0, 0)
+    History.where('? <= date and date <= ?', origin, origin.end_of_year).order(:date).map{ |h| h.date.strftime '%-m' }.uniq
+  end
+
+  def self.days(params)
+    origin = Time.new(params[:year], params[:month], 1, 0, 0, 0)
+    History.where('? <= date and date <= ?', origin, origin.end_of_month).order(:date).map{ |h| h.date.strftime '%-d' }.uniq
+  end
+
+  def self.hours(params)
+    origin = Time.new(params[:year], params[:month], params[:day], 0, 0, 0)
+    History.where('? <= date and date <= ?', origin, origin.end_of_day).order(:date).map{ |h| h.date.strftime '%-H' }.uniq
+  end
+
+  def self.minutes(params)
+    origin = Time.new(params[:year], params[:month], params[:day], params[:hour], 0, 0)
+    History.where('? <= date and date <= ?', origin, origin.end_of_hour).order(:date).map{ |h| h.date.strftime '%-M' }.uniq
+  end
 end
