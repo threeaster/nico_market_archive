@@ -39,6 +39,10 @@ class History < ActiveRecord::Base
     date.strftime '%-M'
   end
 
+  def date_params
+    %i[year month day hour minute].map{ |sym| [sym, send(sym)] }.to_h
+  end
+
   def self.years(params = {})
     History.all.order(:date).map{ |h| h.date.strftime '%Y' }.uniq
   end

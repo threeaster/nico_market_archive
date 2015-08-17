@@ -6,7 +6,14 @@
   <h2>
     <p id="date_example">2015年6月18日　11:00の市場</p>
   </h2>
-  <p>下から、市場情報を見たい時間を選択したください</p>
+  <%= form_for(@history, method: :get) do |f| %>
+    <%= f.select :year, History.years(@date_params) %>年
+    <%= f.select :month, History.months(@date_params) %>月
+    <%= f.select :day, History.days(@date_params) %>日
+    <%= f.select :hour, History.hours(@date_params) %>時
+    <%= f.select :minute, History.minutes(@date_params) %>分の
+    <%= f.submit '市場を見る'%>
+  <% end %>
   <p id="link_to_all_products"><a href="#">→この動画に登録されたすべての商品を表示する</a></p>
 </div>
 <div id="main">
