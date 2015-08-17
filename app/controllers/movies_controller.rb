@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
     movie = Movie.find params[:id]
     @movie_id = movie.movie_id
     market_info = ApiAdapter.get_market_info movie.movie_id
-    @history = movie.histories.order(id: :desc).first
+    @history = movie.histories.order(date: :desc).first
     unless @history && @history.recently_registerd?
       @history = History.create movie: movie, date: Time.now
       @history.register_products(market_info)

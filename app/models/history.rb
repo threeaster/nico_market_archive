@@ -16,7 +16,7 @@ class History < ActiveRecord::Base
   end
 
   def recently_registerd?
-    Time.now - created_at < TIMESPAN
+    Time.now - date < TIMESPAN
   end
 
   def year
