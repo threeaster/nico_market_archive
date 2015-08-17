@@ -25,8 +25,9 @@ feature 'history' do
   end
 
   shared_examples '共通' do
-    feature '個別のhistoryページで、その時の商品の情報が見れる' do
+    feature '個別のhistoryページで、その時の商品などのの情報が見れる' do
       scenario { should have_title movie.movie_id }
+      scenario { should have_content now_history.date.strftime '%Y年%-m月%-d日　%-H:%-Mの市場' }
       scenario { should have_content product_names[0] }
       scenario { should have_content makers[0] }
       scenario { should have_content buy_nums[0] }

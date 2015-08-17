@@ -4,7 +4,7 @@
     <iframe width="312" height="176" src="http://ext.nicovideo.jp/thumb/<%= @movie_id %>" scrolling="no" frameborder="0" id="nico_movie" class="nicovideo"></iframe>
   </div>
   <h2>
-    <p id="date_example">2015年6月18日　11:00の市場</p>
+    <p id="date_example"><%= @now_date %>の市場</p>
   </h2>
   <%= form_for(@history, method: :get) do |f| %>
     <%= f.select :year, History.years(@date_params) %>年

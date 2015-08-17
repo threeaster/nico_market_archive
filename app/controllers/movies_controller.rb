@@ -20,6 +20,7 @@ class MoviesController < ApplicationController
     end
     @products = @history.products
     @date_params = @history.date_params
+    @now_date = @history.date.strftime '%Y年%-m月%-d日　%-H:%-M'
     render template: 'histories/show'
   end
 
