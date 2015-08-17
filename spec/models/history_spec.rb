@@ -45,24 +45,28 @@ RSpec.describe History, :type => :model do
     it{ expect(history.minute).to eq minute }
   end
 
-  describe '指定された時間を含む期間を取得' do
-    let(:params){ { year: 2015, month: 2, day: 27, hour: 19, minute: 30 } }
+  describe '指定された時間を含む期間に登録されている同じ動画のhistoryの時間を取得' do
+    let(:movie){ create :movie, movie_id: 'sm9' }
+    let(:params){ { year: 2015, month: 4, day: 27, hour: 18, minute: 30, movie_id: movie.id } }
     before do
-      movie = create :movie, movie_id: 'sm9'
+      dummy_movie = create :movie, movie_id: 'sm12'
       [
-        [2014, 12, 31, 23, 55, 0],
-        [2015, 1, 30, 22, 50, 0],
-        [2015, 2, 28, 21, 45, 0],
-        [2015, 2, 27, 20, 40, 0],
-        [2015, 2, 27, 19, 35, 0],
-        [2015, 2, 27, 19, 30, 0]
-      ].each{ |time| History.create movie: movie, date: Time.new(*time) }
+        [2016, 11, 20, 22, 55, 0],
+        [2015, 5, 29, 21, 50, 0],
+        [2015, 4, 28, 20, 45, 0],
+        [2015, 4, 27, 19, 40, 0],
+        [2015, 4, 27, 18, 35, 0],
+        [2015, 4, 27, 18, 30, 0]
+      ].each_with_index do |time, i|
+        History.create movie: movie, date: Time.new(*time)
+        History.create movie: dummy_movie, date: Time.new(*time.tap{ |t| t[i] += 1 })
+      end
     end
 
-    it{ expect(History.years params).to eq %w[2014 2015] }
-    it{ expect(History.months params).to eq %w[1 2] }
+    it{ expect(History.years params).to eq %w[2015 2016] }
+    it{ expect(History.months params).to eq %w[4 5] }
     it{ expect(History.days params).to eq %w[27 28] }
-    it{ expect(History.hours params).to eq %w[19 20] }
+    it{ expect(History.hours params).to eq %w[18 19] }
     it{ expect(History.minutes params).to eq %w[30 35] }
   end
 end
