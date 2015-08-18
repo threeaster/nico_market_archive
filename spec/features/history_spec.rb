@@ -11,7 +11,7 @@ feature 'history' do
     History.create! movie: movie, date: Time.new(2015, 2, 1, 1, 1, 1)
     History.create! movie: movie, date: Time.new(2015, 12, 3, 1, 1, 1)
     History.create! movie: movie, date: Time.new(2015, 12, 31, 4, 1, 1)
-    History.create! movie: movie, date: Time.new(2015, 12, 31, 23, 5, 1)
+    @before_history = History.create! movie: movie, date: Time.new(2015, 12, 31, 23, 5, 1)
     dummy_movie = create :movie, movie_id: 'sm12'
     History.create! movie: dummy_movie, date: Time.new(2013, 1, 1, 1, 1, 1)
     History.create! movie: dummy_movie, date: Time.new(2015, 3, 1, 1, 1, 1)
@@ -49,6 +49,16 @@ feature 'history' do
       scenario { expect(page.all('#history_day option').map{ |opt| opt[:value] }).to eq %w[3 31] }
       scenario { expect(page.all('#history_hour option').map{ |opt| opt[:value] }).to eq %w[4 23] }
       scenario { expect(page.all('#history_minute option').map{ |opt| opt[:value] }).to eq %w[5 30] }
+    end
+
+    feature 'ボタンを押すとセレクトボックスに選ばれた時間のhistoryページにジャンプする' do
+      background do
+        @before_history.date
+        select '5', from: :history_minute
+        click_button '市場を見る'
+      end
+
+      scenario { expect(current_path).to eq history_path @before_history.id }
     end
   end
 

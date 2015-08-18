@@ -66,4 +66,13 @@ class History < ActiveRecord::Base
     origin = Time.new(params[:year], params[:month], params[:day], params[:hour], 0, 0)
     History.where(movie_id: params[:movie_id]).where('? <= date and date <= ?', origin, origin.end_of_hour).order(:date).map{ |h| h.date.strftime '%-M' }.uniq
   end
+
+  def self.find_history_by_time(params)
+    unless params && (%w[year month day hour minute] - params.keys).empty?
+      return nil
+    end
+    date = Time.new(params['year'], params['month'], params['day'], params['hour'], params['minute'])
+    history = History.where('? <= date and date <= ?', date.beginning_of_minute, date.end_of_month).first
+    history
+  end
 end

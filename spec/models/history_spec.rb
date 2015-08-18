@@ -69,4 +69,20 @@ RSpec.describe History, :type => :model do
     it{ expect(History.hours params).to eq %w[18 19] }
     it{ expect(History.minutes params).to eq %w[30 35] }
   end
+
+  describe '::find_history_by_time' do
+    let!(:history){ History.create date: Time.new(2015, 1, 1, 1, 1, 0) }
+
+    it 'パラメータが足りないときnilが返る' do
+      expect(History.find_history_by_time 'year' => 2015).to be_nil
+    end
+
+    it '存在するhistoryの時間のhashを渡すとhistoryがかえってくる' do
+      expect(History.find_history_by_time 'year' => 2015, 'month' => 1, 'day' => 1, 'hour' => 1, 'minute' => 1).to eq history
+    end
+
+    it '存在しないhistoryの時間をhashで渡すとnilがかえってくる' do
+      expect(History.find_history_by_time 'year' =>  2015, 'month' => 1, 'day' => 2, 'hour' => 3, 'minute' => 4).to be_nil
+    end
+  end
 end
