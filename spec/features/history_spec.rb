@@ -2,12 +2,10 @@ require 'rails_helper'
 
 feature 'history' do
   subject{ page }
-  let(:movie){ create :movie, movie_id: 'sm09' }
-  let(:now_history){ History.create! movie: movie, date: Time.new(2015, 12, 31, 23, 30, 0) }
 
   background do
     Timecop.freeze Time.new(2015, 12, 31, 23, 30, 0)
-    generate_histories movie
+    generate_histories
   end
 
   after do
@@ -34,11 +32,11 @@ feature 'history' do
     end
 
     feature '各セレクトボックスにはその前までが現在のhistoryと一致している、同じ動画についてのhistoryの者達が入っている' do
-      scenario { expect(page.all('#history_year option').map{ |opt| opt[:value] }).to eq %w[2014 2015] }
-      scenario { expect(page.all('#history_month option').map{ |opt| opt[:value] }).to eq %w[2 12] }
-      scenario { expect(page.all('#history_day option').map{ |opt| opt[:value] }).to eq %w[3 31] }
-      scenario { expect(page.all('#history_hour option').map{ |opt| opt[:value] }).to eq %w[4 23] }
-      scenario { expect(page.all('#history_minute option').map{ |opt| opt[:value] }).to eq %w[5 30] }
+      scenario { expect(page.all('#history_year option').map{ |opt| opt[:value] }).to eq collect_years }
+      scenario { expect(page.all('#history_month option').map{ |opt| opt[:value] }).to eq collect_months }
+      scenario { expect(page.all('#history_day option').map{ |opt| opt[:value] }).to eq collect_days }
+      scenario { expect(page.all('#history_hour option').map{ |opt| opt[:value] }).to eq collect_hours }
+      scenario { expect(page.all('#history_minute option').map{ |opt| opt[:value] }).to eq collect_minutes }
     end
 
     feature 'ボタンを押すとセレクトボックスに選ばれた時間のhistoryページにジャンプする' do
@@ -54,7 +52,7 @@ feature 'history' do
 
   feature 'movieページ' do
     background do
-      stub_request(:get, "http://ichiba.nicovideo.jp/embed/zero/show_ichiba?v=sm09").to_return(:status => 200, :body => page_file('sm09_market.json'))
+      stub_request(:get, "http://ichiba.nicovideo.jp/embed/zero/show_ichiba?v=sm9").to_return(:status => 200, :body => page_file('sm9_market.json'))
       visit movie_path movie.id
     end
 
