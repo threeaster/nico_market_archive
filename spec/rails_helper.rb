@@ -60,6 +60,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.include FactoryGirl::Syntax::Methods
   config.include MovieData
+  config.include HistoryGenerator
   FactoryGirl.reload
   WebMock.disable_net_connect!(:allow_localhost => true)
 end
