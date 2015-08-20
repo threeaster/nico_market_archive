@@ -1,7 +1,14 @@
 NicoMarketArchive::Application.routes.draw do
   root to: 'movies#index'
   resources :movies, only: [:show, :create]
-  resources :histories, only: [:show]
+  resources :histories, only: [:show] do
+    collection do
+      get :months
+      get :days
+      get :hours
+      get :minutes
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

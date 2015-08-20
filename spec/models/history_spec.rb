@@ -46,28 +46,39 @@ RSpec.describe History, :type => :model do
   end
 
   describe '指定された時間を含む期間に登録されている同じ動画のhistoryの時間を取得' do
-    let(:movie){ create :movie, movie_id: 'sm9' }
-    let(:params){ { year: 2015, month: 4, day: 27, hour: 18, minute: 30, movie_id: movie.id } }
-    before do
-      dummy_movie = create :movie, movie_id: 'sm12'
-      [
-        [2016, 11, 20, 22, 55, 0],
-        [2015, 5, 29, 21, 50, 0],
-        [2015, 4, 28, 20, 45, 0],
-        [2015, 4, 27, 19, 40, 0],
-        [2015, 4, 27, 18, 35, 0],
-        [2015, 4, 27, 18, 30, 0]
-      ].each_with_index do |time, i|
-        History.create movie: movie, date: Time.new(*time)
-        History.create movie: dummy_movie, date: Time.new(*time.tap{ |t| t[i] += 1 })
+    describe '正常なパラメータの時' do
+      let(:movie){ create :movie, movie_id: 'sm9' }
+      let(:params){ { year: 2015, month: 4, day: 27, hour: 18, minute: 30, movie_id: movie.id } }
+      before do
+        dummy_movie = create :movie, movie_id: 'sm12'
+        [
+          [2016, 11, 20, 22, 55, 0],
+          [2015, 5, 29, 21, 50, 0],
+          [2015, 4, 28, 20, 45, 0],
+          [2015, 4, 27, 19, 40, 0],
+          [2015, 4, 27, 18, 35, 0],
+          [2015, 4, 27, 18, 30, 0]
+        ].each_with_index do |time, i|
+          History.create movie: movie, date: Time.new(*time)
+          History.create movie: dummy_movie, date: Time.new(*time.tap{ |t| t[i] += 1 })
+        end
       end
+
+      it{ expect(History.years params).to eq %w[2015 2016] }
+      it{ expect(History.months params).to eq %w[4 5] }
+      it{ expect(History.days params).to eq %w[27 28] }
+      it{ expect(History.hours params).to eq %w[18 19] }
+      it{ expect(History.minutes params).to eq %w[30 35] }
     end
 
-    it{ expect(History.years params).to eq %w[2015 2016] }
-    it{ expect(History.months params).to eq %w[4 5] }
-    it{ expect(History.days params).to eq %w[27 28] }
-    it{ expect(History.hours params).to eq %w[18 19] }
-    it{ expect(History.minutes params).to eq %w[30 35] }
+    describe 'パラメータが無いとき' do
+      let(:params){ {} }
+      it{ expect(History.years params).to be_nil }
+      it{ expect(History.months params).to be_nil }
+      it{ expect(History.days params).to be_nil }
+      it{ expect(History.hours params).to be_nil }
+      it{ expect(History.minutes params).to be_nil }
+    end
   end
 
   describe '::find_history_by_time' do

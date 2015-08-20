@@ -9,4 +9,14 @@ class HistoriesController < ApplicationController
     @date_params = @history.date_params
     @now_date = @history.date.strftime '%Y年%-m月%-d日　%-H:%-M'
   end
+
+  [:months, :days, :hours, :minutes].each do |part|
+    define_method(part) do
+      if (params && parts = History.send(part, params))
+        render json: parts
+      else
+        render nothing: true, status: 400
+      end
+    end
+  end
 end
