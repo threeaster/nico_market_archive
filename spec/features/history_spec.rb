@@ -32,11 +32,11 @@ feature 'history' do
     end
 
     feature '各セレクトボックスにはその前までが現在のhistoryと一致している、同じ動画についてのhistoryの者達が入っている' do
-      scenario { expect(page.all('#history_year option').map{ |opt| opt[:value] }).to eq collect_years }
-      scenario { expect(page.all('#history_month option').map{ |opt| opt[:value] }).to eq collect_months }
-      scenario { expect(page.all('#history_day option').map{ |opt| opt[:value] }).to eq collect_days }
-      scenario { expect(page.all('#history_hour option').map{ |opt| opt[:value] }).to eq collect_hours }
-      scenario { expect(page.all('#history_minute option').map{ |opt| opt[:value] }).to eq collect_minutes }
+      scenario { expect(page.all('#history_year option').map{ |opt| opt[:value] }).to eq correct_years }
+      scenario { expect(page.all('#history_month option').map{ |opt| opt[:value] }).to eq correct_months }
+      scenario { expect(page.all('#history_day option').map{ |opt| opt[:value] }).to eq correct_days }
+      scenario { expect(page.all('#history_hour option').map{ |opt| opt[:value] }).to eq correct_hours }
+      scenario { expect(page.all('#history_minute option').map{ |opt| opt[:value] }).to eq correct_minutes }
     end
 
     feature 'ボタンを押すとセレクトボックスに選ばれた時間のhistoryページにジャンプする' do

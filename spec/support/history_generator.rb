@@ -21,23 +21,23 @@ module HistoryGenerator
     History.find_or_create_by movie: movie, date: Time.new(2015, 12, 31, 23, 30, 0)
   end
 
-  def collect_years
+  def correct_years
     %w[2014 2015]
   end
 
-  def collect_months
+  def correct_months
     %w[2 12]
   end
 
-  def collect_days
+  def correct_days
     %w[3 31]
   end
 
-  def collect_hours
+  def correct_hours
     %w[4 23]
   end
 
-  def collect_minutes
+  def correct_minutes
     %w[5 30]
   end
 end

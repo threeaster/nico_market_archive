@@ -18,7 +18,7 @@ describe '時間のAPI', type: :request do
         get send("#{parts}_histories_path", params)
       end
 
-      it{ expect(JSON.parse(response.body)).to eq send("collect_#{parts}") }
+      it{ expect(JSON.parse(response.body)).to eq send("correct_#{parts}") }
       it{ expect(response.status).to eq 200 }
     end
 
