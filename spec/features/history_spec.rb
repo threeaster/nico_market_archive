@@ -68,7 +68,9 @@ feature 'history' do
       feature '月を選ぶ' do
         background do
           select '2014', from: :history_year
+          all '#history_month option'
           select '2015', from: :history_year
+          all '#history_month option'
           select '2', from: :history_month
           all '#history_day option'
         end
@@ -85,9 +87,13 @@ feature 'history' do
       feature '日を選ぶ' do
         background do
           select '2014', from: :history_year
+          all '#history_month option'
           select '2015', from: :history_year
+          all '#history_month option'
           select '2', from: :history_month
+          all '#history_day option'
           select '12', from: :history_month
+          all '#history_day option'
           select '3', from: :history_day
           all '#history_hour option'
         end
@@ -104,11 +110,17 @@ feature 'history' do
       feature '時間を選ぶ' do
         background do
           select '2014', from: :history_year
+          all '#history_month option'
           select '2015', from: :history_year
+          all '#history_month option'
           select '2', from: :history_month
+          all '#history_day option'
           select '12', from: :history_month
+          all '#history_day option'
           select '3', from: :history_day
+          all '#history_hour option'
           select '31', from: :history_day
+          all '#history_hour option'
           select '4', from: :history_hour
           all '#history_minute option'
         end
