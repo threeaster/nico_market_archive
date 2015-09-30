@@ -48,6 +48,80 @@ feature 'history' do
 
       scenario { expect(current_path).to eq history_path @before_history.id }
     end
+
+    feature '時間選ぶとその直後だけが選択可能になる', js: true do
+      feature '年を選ぶ' do
+        background do
+          select '2014', from: :history_year
+          all '#history_month option'
+        end
+
+        scenario { expect(page.all('#history_month option').map{ |opt| opt[:value] }).to eq %w[1 2] }
+        scenario { expect(find('#history_year')['disabled']).to be_falsy }
+        scenario { expect(find('#history_month')['disabled']).to be_falsy }
+        scenario { expect(find('#history_day')['disabled']).to be_truthy }
+        scenario { expect(find('#history_hour')['disabled']).to be_truthy }
+        scenario { expect(find('#history_minute')['disabled']).to be_truthy }
+        scenario { expect(find('#jump_to_history_time')['disabled']).to be_truthy }
+      end
+
+      feature '月を選ぶ' do
+        background do
+          select '2014', from: :history_year
+          select '2015', from: :history_year
+          select '2', from: :history_month
+          all '#history_day option'
+        end
+
+        scenario { expect(page.all('#history_day option').map{ |opt| opt[:value] }).to eq %w[1 2] }
+        scenario { expect(find('#history_year')['disabled']).to be_falsy }
+        scenario { expect(find('#history_month')['disabled']).to be_falsy }
+        scenario { expect(find('#history_day')['disabled']).to be_falsy }
+        scenario { expect(find('#history_hour')['disabled']).to be_truthy }
+        scenario { expect(find('#history_minute')['disabled']).to be_truthy }
+        scenario { expect(find('#jump_to_history_time')['disabled']).to be_truthy }
+      end
+
+      feature '日を選ぶ' do
+        background do
+          select '2014', from: :history_year
+          select '2015', from: :history_year
+          select '2', from: :history_month
+          select '12', from: :history_month
+          select '3', from: :history_day
+          all '#history_hour option'
+        end
+
+        scenario { expect(page.all('#history_hour option').map{ |opt| opt[:value] }).to eq %w[1 2] }
+        scenario { expect(find('#history_year')['disabled']).to be_falsy }
+        scenario { expect(find('#history_month')['disabled']).to be_falsy }
+        scenario { expect(find('#history_day')['disabled']).to be_falsy }
+        scenario { expect(find('#history_hour')['disabled']).to be_falsy }
+        scenario { expect(find('#history_minute')['disabled']).to be_truthy }
+        scenario { expect(find('#jump_to_history_time')['disabled']).to be_truthy }
+      end
+
+      feature '時間を選ぶ' do
+        background do
+          select '2014', from: :history_year
+          select '2015', from: :history_year
+          select '2', from: :history_month
+          select '12', from: :history_month
+          select '3', from: :history_day
+          select '31', from: :history_day
+          select '4', from: :history_hour
+          all '#history_minute option'
+        end
+
+        scenario { expect(page.all('#history_minute option').map{ |opt| opt[:value] }).to eq %w[1 2] }
+        scenario { expect(find('#history_year')['disabled']).to be_falsy }
+        scenario { expect(find('#history_month')['disabled']).to be_falsy }
+        scenario { expect(find('#history_day')['disabled']).to be_falsy }
+        scenario { expect(find('#history_hour')['disabled']).to be_falsy }
+        scenario { expect(find('#history_minute')['disabled']).to be_falsy }
+        scenario { expect(find('#jump_to_history_time')['disabled']).to be_falsy }
+      end
+    end
   end
 
   feature 'movieページ' do

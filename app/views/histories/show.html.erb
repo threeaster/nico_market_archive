@@ -12,7 +12,7 @@
     <%= f.select :day, History.days(@date_params) %>日
     <%= f.select :hour, History.hours(@date_params) %>時
     <%= f.select :minute, History.minutes(@date_params) %>分の
-    <%= f.submit '市場を見る'%>
+    <%= f.submit '市場を見る', id: :jump_to_history_time %>
   <% end %>
   <p id="link_to_all_products"><a href="#">→この動画に登録されたすべての商品を表示する</a></p>
 </div>

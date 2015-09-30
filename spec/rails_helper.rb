@@ -11,6 +11,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'factory_girl'
 require 'webmock/rspec'
+require 'capybara'
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 
@@ -63,6 +64,11 @@ RSpec.configure do |config|
   config.include HistoryGenerator
   FactoryGirl.reload
   WebMock.disable_net_connect!(:allow_localhost => true)
+end
+
+Phantomjs.path # Force install on require
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, :phantomjs => Phantomjs.path)
 end
 
 def page_file path

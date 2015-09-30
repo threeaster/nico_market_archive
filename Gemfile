@@ -64,6 +64,7 @@ group :test do
   gem 'webmock'
   gem 'timecop'
   gem 'poltergeist'
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
 gem 'rake'
