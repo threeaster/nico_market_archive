@@ -1,6 +1,8 @@
 NicoMarketArchive::Application.routes.draw do
   root to: 'movies#index'
-  resources :movies, only: [:show, :create]
+  resources :movies, only: [:show, :create] do
+    get :show_all
+  end
   resources :histories, only: [:show] do
     collection do
       get :months

@@ -14,7 +14,7 @@
     <%= f.select :minute, History.minutes(@date_params) %>分の
     <%= f.submit '市場を見る', id: :jump_to_history_time %>
   <% end %>
-  <p id="link_to_all_products"><a href="#">→この動画に登録されたすべての商品を表示する</a></p>
+  <p id="link_to_all_products"><%= link_to '→この動画に登録されたすべての商品を表示する', movie_show_all_path(@movie_id) %></p>
 </div>
 <div id="main">
   <div id="products">

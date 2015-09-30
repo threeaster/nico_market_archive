@@ -25,6 +25,10 @@ class MoviesController < ApplicationController
     render template: 'histories/show'
   end
 
+  def show_all
+
+  end
+
   private
   def movie_params
     params.require(:movie).permit(:movie_id)
