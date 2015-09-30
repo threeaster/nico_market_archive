@@ -1,0 +1,7 @@
+  <div class="product">
+    <%= image_tag product.product_image_url, width: 178, height: 178, alt: product.product_name, title: product.product_name %><br />
+    <%= link_to product.product_name, "http://www.amazon.co.jp/dp/#{product.product_id_for_url}", class: 'product_name' %>
+    <p class="maker"><%= product.maker %></p>
+    <span class="buy"><%= product.buy_num %></span>人が購入 / <span class="click"><%= product.clicked_num %></span>人がクリック(この動画で<span class="buy_at_this_movie"><%= product.clicked_at_this_movie %></span>人)<br />
+    <%= link_to 'ニコニコ市場へ', "http://ichiba.nicovideo.jp/item/#{product.product_id}", class: 'nico_market_link' %>
+  </div>

@@ -1,0 +1,8 @@
+<%= form_for(history, method: :get) do |f| %>
+  <%= f.select :year, History.years(date_params) %>年
+  <%= f.select :month, History.months(date_params) %>月
+  <%= f.select :day, History.days(date_params) %>日
+  <%= f.select :hour, History.hours(date_params) %>時
+  <%= f.select :minute, History.minutes(date_params) %>分の
+  <%= f.submit '市場を見る', id: :jump_to_history_time %>
+<% end %>
