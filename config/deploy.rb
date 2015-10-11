@@ -41,6 +41,8 @@ set :keep_releases, 5
 
 set :passenger_restart_command, 'rvmsudo passenger-config restart-app'
 
+default_run_options[:pty] = true
+
 namespace :deploy do
 
   after :restart, :clear_cache do
