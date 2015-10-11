@@ -39,6 +39,8 @@ set :default_env, { path: "$PATH:/usr/local/rvm/gems/ruby-2.1.5/bin:/usr/local/r
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
+set :passenger_restart_command, "/usr/local/rvm/gems/ruby-2.1.5/gems/passenger-4.0.53/bin/passenger-config restart-app #{deploy_to}"
+
 namespace :deploy do
 
   after :restart, :clear_cache do
@@ -47,12 +49,6 @@ namespace :deploy do
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
-    end
-  end
-
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 
