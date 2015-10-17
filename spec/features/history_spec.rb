@@ -53,7 +53,7 @@ feature 'history' do
       feature '年を選ぶ' do
         background do
           select '2014', from: :history_year
-          expect(page).to have_selector '#history_month option'
+          find("#history_month option[value='1']")
         end
 
         scenario { expect(page.all('#history_month option').map{ |opt| opt[:value] }).to eq %w[1 2] }
@@ -68,11 +68,11 @@ feature 'history' do
       feature '月を選ぶ' do
         background do
           select '2014', from: :history_year
-          expect(page).to have_selector '#history_month option'
+          find("#history_month option[value='1']")
           select '2015', from: :history_year
-          expect(page).to have_selector '#history_month option'
+          find("#history_month option[value='#{correct_months.first}']")
           select '2', from: :history_month
-          expect(page).to have_selector '#history_day option'
+          find("#history_day option[value='1']")
         end
 
         scenario { expect(page.all('#history_day option').map{ |opt| opt[:value] }).to eq %w[1 2] }
@@ -87,15 +87,15 @@ feature 'history' do
       feature '日を選ぶ' do
         background do
           select '2014', from: :history_year
-          expect(page).to have_selector '#history_month option'
+          find("#history_month option[value='1']")
           select '2015', from: :history_year
-          expect(page).to have_selector '#history_month option'
+          find("#history_month option[value='#{correct_months.first}']")
           select '2', from: :history_month
-          expect(page).to have_selector '#history_day option'
+          find("#history_day option[value='1']")
           select '12', from: :history_month
-          expect(page).to have_selector '#history_day option'
+          find("#history_day option[value='#{correct_days.first}']")
           select '3', from: :history_day
-          expect(page).to have_selector '#history_hour option'
+          find("#history_hour option[value='1']")
         end
 
         scenario { expect(page.all('#history_hour option').map{ |opt| opt[:value] }).to eq %w[1 2] }
@@ -110,19 +110,19 @@ feature 'history' do
       feature '時間を選ぶ' do
         background do
           select '2014', from: :history_year
-          expect(page).to have_selector '#history_month option'
+          find("#history_month option[value='1']")
           select '2015', from: :history_year
-          expect(page).to have_selector '#history_month option'
+          find("#history_month option[value='#{correct_months.first}']")
           select '2', from: :history_month
-          expect(page).to have_selector '#history_day option'
+          find("#history_day option[value='1']")
           select '12', from: :history_month
-          expect(page).to have_selector '#history_day option'
+          find("#history_day option[value='#{correct_days.first}']")
           select '3', from: :history_day
-          expect(page).to have_selector '#history_hour option'
+          find("#history_hour option[value='1']")
           select '31', from: :history_day
-          expect(page).to have_selector '#history_hour option'
+          find("#history_hour option[value='#{correct_hours.first}']")
           select '4', from: :history_hour
-          expect(page).to have_selector '#history_minute option'
+          find("#history_minute option[value='1']")
         end
 
         scenario { expect(page.all('#history_minute option').map{ |opt| opt[:value] }).to eq %w[1 2] }
